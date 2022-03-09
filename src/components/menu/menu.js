@@ -55,3 +55,5 @@ function menuMaker(arr) {
 
   return menu
 }
+
+document.querySelector('.header').appendChild(menuMaker(menuItems))

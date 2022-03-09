@@ -117,16 +117,39 @@ const data = [
 */
 
 function articleMaker(obj) {
-  const base = document.createElement("div")
-  const title = document.createElement("h2")
-  const date = document.createElement("p")
-  const p1 = document.createElement("p")
-  const p2 = document.createElement("p")
-  const p3 = document.createElement("p")
-  const expand = document.createElement("span")
+  const articleBase = document.createElement("div")
+  const articleTitle = document.createElement("h2")
+  const articleDate = document.createElement("p")
+  const articleP1 = document.createElement("p")
+  const articleP2 = document.createElement("p")
+  const articleP3 = document.createElement("p")
+  const articleExpand = document.createElement("span")
 
+  articleBase.classList.add("article")
+  articleDate.classList.add("date")
+  articleExpand.classList.add("expandButton")
 
-  expand.addEventListener("click", () => {
+  articleBase.appendChild(articleTitle)
+  articleBase.appendChild(articleDate)
+  articleBase.appendChild(articleP1)
+  articleBase.appendChild(articleP2)
+  articleBase.appendChild(articleP3)
+  articleBase.appendChild(articleExpand)
 
-  })
+   articleExpand.addEventListener("click", () => {
+     articleBase.classList.toggle('article-open')
+   })
+
+   articleTitle.textContent = obj.title
+   articleDate.textContent = obj.date
+   articleP1.textContent = obj.firstParagraph
+   articleP2.textContent = obj.secondParagraph
+   articleP3.textContent = obj.thirdParagraph
+   articleExpand.textContent = "Expand"
+
+   return articleBase
 }
+
+data.forEach(element => {
+  document.querySelector('div.articles').appendChild(articleMaker(element))
+})
